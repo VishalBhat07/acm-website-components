@@ -1,0 +1,248 @@
+/* Design3.module.css - Azure Timeline Design with Animations */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2.5rem;
+  background-color: #fefcfb;
+  color: #0a1128;
+  font-family: "Source Sans Pro", Arial, sans-serif;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(
+    circle,
+    rgba(3, 64, 120, 0.05) 0%,
+    rgba(3, 64, 120, 0) 70%
+  );
+  z-index: 0;
+}
+
+.container::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(
+    circle,
+    rgba(18, 130, 162, 0.05) 0%,
+    rgba(18, 130, 162, 0) 70%
+  );
+  z-index: 0;
+}
+
+.heading {
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 5rem;
+  color: #001f54;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 1;
+  animation: scaleIn 0.7s ease-out forwards;
+}
+
+.heading:after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  margin: 20px auto 0;
+  background: linear-gradient(90deg, #0466c8, #1282a2);
+  border-radius: 2px;
+}
+
+.eventsList {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+.eventsList::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 4px;
+  background: linear-gradient(180deg, #0466c8, #034078);
+  left: 30px;
+  top: 0;
+  border-radius: 2px;
+  animation: grow 1.5s ease-out forwards;
+  transform-origin: top center;
+}
+
+.eventItem {
+  position: relative;
+  padding-left: 90px;
+  padding-bottom: 4rem;
+  animation: fadeInRight 0.6s ease-out forwards;
+  opacity: 0;
+  animation-delay: calc(0.25s * var(--index, 0));
+}
+
+.eventDate {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #001f54, #034078);
+  color: #fefcfb;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+  z-index: 2;
+  box-shadow: 0 5px 15px rgba(0, 31, 84, 0.3);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.eventItem:hover .eventDate {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 8px 20px rgba(0, 31, 84, 0.4);
+  background: linear-gradient(135deg, #034078, #0466c8);
+}
+
+.eventContent {
+  background-color: #fefcfb;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 8px 25px rgba(10, 17, 40, 0.08);
+  border-left: 5px solid #0466c8;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.eventContent::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(4, 102, 200, 0.05) 0%,
+    rgba(4, 102, 200, 0) 100%
+  );
+  transition: height 0.4s ease;
+}
+
+.eventItem:hover .eventContent {
+  transform: translateX(8px);
+  box-shadow: 0 12px 30px rgba(10, 17, 40, 0.12);
+  border-left-color: #1282a2;
+}
+
+.eventItem:hover .eventContent::before {
+  height: 100%;
+}
+
+.eventTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  color: #001f54;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.eventDescription {
+  color: #034078;
+  line-height: 1.7;
+  font-size: 1.1rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.eventItem:hover .eventTitle {
+  color: #0466c8;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes grow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 3rem 1.5rem;
+  }
+
+  .heading {
+    font-size: 2rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .eventsList::before {
+    left: 22px;
+  }
+
+  .eventItem {
+    padding-left: 65px;
+    padding-bottom: 3rem;
+  }
+
+  .eventDate {
+    width: 45px;
+    height: 45px;
+    font-size: 0.7rem;
+  }
+
+  .eventContent {
+    padding: 1.5rem;
+  }
+
+  .eventTitle {
+    font-size: 1.5rem;
+  }
+
+  .eventDescription {
+    font-size: 1rem;
+  }
+}

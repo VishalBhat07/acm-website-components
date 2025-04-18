@@ -1,0 +1,72 @@
+/* General Reset */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fefcfb;
+  color: #0a1128;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.container {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 30px;
+  animation: fadeIn 1.2s ease-in;
+  background-color: #0a1128;
+}
+
+/* Button styles */
+.buttons {
+  background: #1282a2;
+  color: #fefcfb;
+  font-size: 20px;
+  padding: 16px 32px;
+  border: 2px solid #034078;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 10px 20px rgba(0, 31, 84, 0.2);
+}
+
+.buttons:hover {
+  background: #0466c8;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(4, 102, 200, 0.3);
+}
+
+.buttons::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(254, 252, 251, 0.2);
+  z-index: -1;
+  transition: left 0.5s;
+}
+
+.buttons:hover::before {
+  left: 0;
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
